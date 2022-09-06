@@ -1296,7 +1296,8 @@ func (r *ImageRef) OptimizeICCProfile() error {
 		r.optimizedIccProfile = SGrayV2MicroICCProfilePath
 	}
 
-	embedded := r.HasICCProfile() && (inputProfile == "")
+	// BJG CHANGE: This fix makes sure that cmyk images are color-fixed before transfering to RGB
+	embedded := r.HasICCProfile()
 
 	depth := 16
 	if r.BandFormat() == BandFormatUchar || r.BandFormat() == BandFormatChar || r.BandFormat() == BandFormatNotSet {
