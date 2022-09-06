@@ -158,7 +158,8 @@ func DetermineImageType(buf []byte) ImageType {
 	} else if isJP2K(buf) {
 		return ImageTypeJP2K
 	} else {
-		return ImageTypeUnknown
+		// BJG CHANGE: Use magick by default if everything fails
+		return ImageTypeMagick
 	}
 }
 
